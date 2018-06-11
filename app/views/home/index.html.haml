@@ -1,0 +1,29 @@
+#viz
+  %canvas#analyser{width: 1024, height: 500}
+  %canvas#wavedisplay{width: 1024, height: 500}
+#controls
+  %select#recordingFiles
+    %option{value: 'new'}
+      Nová nahrávka
+    - @nahravky.each do |nahravka|
+      %option{value: nahravka.id}
+        = nahravka.id
+  #analysis-wrapper
+    #inputs-wrapper
+      %form
+        = hidden_field_tag 'pacient_id', @pacient_id
+        = label_tag 'meno', 'Meno'
+        = text_field_tag 'meno'
+        = label_tag 'priezvisko', 'Priezvisko'
+        = text_field_tag 'priezvisko'
+        = label_tag 'vek', 'Vek'
+        = number_field_tag 'vek'
+        = label_tag 'pohlavie', 'Pohlavie'
+        = select_tag 'pohlavie', options_for_select(Pacient.pohlavia.keys)
+      = image_tag 'mic128.png', id: 'record', onclick: 'toggleRecording(this)'
+    %audio#play{style: 'display:none;', controls: true}
+      %source{src: '', type: 'audio/wav'}
+      Váš prehliadač nepodporuje prehrávanie audio súborov.
+    #analysis
+      #analysisResult
+      %img#loader{src: 'assets/loader.svg', style: 'max-height: 100%; max-width: 100%; display:none;'}

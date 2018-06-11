@@ -1,0 +1,18 @@
+sk:
+  active_admin:
+    create_another: Pridaj ďalší záznam
+    devise:
+      email:
+        title: Email
+      password:
+        title: Heslo
+    filters:
+      predicates:
+        from: Od
+        to: Do
+    search_status:
+      headline: Stav vyhľadávania
+      current_filters: Aktívne filtre
+  time:
+    formats:
+      long: "%d.%m.%Y %H:%M:%S"

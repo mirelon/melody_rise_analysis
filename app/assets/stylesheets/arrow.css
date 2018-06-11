@@ -1,0 +1,74 @@
+.arrow {
+  position: relative;
+  font-size: 13px;
+  max-width: 100px;
+  background: #D94F1A;
+  height: 40px;
+  line-height: 40px;
+  margin: 20px 40px 20px 15px;
+  text-align: center;
+  color: white;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+  display:inline-block;
+  width: 60px;
+
+  animation-name: move-left-to-right;
+  animation-duration: 1s;
+  animation-delay: 0.6s;
+  animation-iteration-count: infinite;
+  animation-direction: alternative;
+}
+
+.arrow.arrow-small {
+  width: 40px;
+  height: 30px;
+}
+
+@keyframes move-left-to-right {
+  0% {
+    transform: translateX(5%);
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateX(15%);
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: translateX(5%);
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes move-right-to-left {
+  0% {
+    transform: translateX(-5%);
+    box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateX(-15%);
+    box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: translateX(-5%);
+    box-shadow: -3px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/*right arrow*/
+
+.arrow-right {
+  border-radius: 5px 0px 0 5px;
+}
+
+.arrow-right:after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid #D94F1A;
+}
