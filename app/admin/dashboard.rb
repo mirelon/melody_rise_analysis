@@ -12,8 +12,13 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel "Nahravky" do
+        panel "Všetky nahrávky" do
           area_chart Nahravka.histogram
+        end
+        Pacient.all.each do |pacient|
+          panel pacient.display_name do
+            area_chart pacient.histogram
+          end
         end
       end
 
