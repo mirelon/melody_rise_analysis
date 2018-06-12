@@ -70,14 +70,13 @@ function uploadAudio( blob ) {
       type: 'POST',
       url: '/home/upload',
       data: fd,
-      dataType: 'text'
-    }).done(function(data) {
-      var filename = new Recording(data).filename;
+      dataType: 'json'
+    }).done(function(json) {
       $('#recordingFiles')
         .append($('<option></option>')
-        .attr("value",filename)
-        .text(filename));
-      $('#recordingFiles').val(filename).trigger('change');
+        .attr("value",json['id'])
+        .text(json['id']));
+      $('#recordingFiles').val(json['id']).trigger('change');
     });
   };
   reader.readAsDataURL(blob);
@@ -266,22 +265,41 @@ $(function() {
       $('#play').hide();
       $('#record').show();
     } else {
-      $('#record').hide();
+      // $('#record').hide();
       $('#analysis').show();
       $('#analysisResult').hide();
       $.ajax({
         type: 'GET',
-        url: '/nahravka/' + this.value,
+        url: '/nahravka/' + this.value
       }).done(function(json){
         console.log(json);
         window.json = json;
-        $('#play').find('source').attr('src', json['wav_file']);
-        $('#play').show().load(json['wav_file']);
+        $('#play').attr('src', json['wav_url']);
+        $('#play').show();
         $('#loader').hide();
         $('#analysisResult').show();
         displayAnalysis(json['praat_output']);
       });
     }   
+  });
+});
+
+$(function() {
+  $('#pacienti').on('change', function() {
+    if (this.value == 'new') {
+      $('form#pacient')[0].reset();
+      $('#meno').focus();
+    } else {
+      $.ajax({
+        type: 'GET',
+        url: '/pacient/' + this.value
+      }).done(function(json){
+        $('#meno').val(json.meno);
+        $('#priezvisko').val(json.priezvisko);
+        $('#vek').val(json.vek);
+        $('#pohlavie').val(json.pohlavie);
+      })
+    }
   });
 });
 

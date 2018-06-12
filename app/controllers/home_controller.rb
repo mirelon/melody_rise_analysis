@@ -12,6 +12,7 @@ class HomeController < ApplicationController
     )
     pacient = Pacient.where(params.permit(:meno, :priezvisko, :vek, :pohlavie)).first_or_create
     nahravka = pacient.nahravky.create(file: blob)
-    render plain: nahravka.analyze_file
+    nahravka.analyze_file
+    render json: nahravka
   end
 end

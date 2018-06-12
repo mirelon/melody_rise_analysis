@@ -26,8 +26,9 @@ body {
   width: 100%;
   margin: 0 0;
 }
-form {
-  text-align: right;
+input {
+  display: inline;
+  width: 100px !important;
 }
 canvas {
   display: inline-block;

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/pacient' => 'pacient#create'
   post '/nahravka' => 'nahravka#create'
   get '/nahravka/:id' => 'nahravka#show'
+  get '/pacient/:id' => 'pacient#show'
   post '/home/upload' => 'home#upload'
   root to: 'home#index'
 end

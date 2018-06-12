@@ -13,7 +13,7 @@ class Nahravka < ApplicationRecord
     praat_output = `#{executable} --run "#{f0rise_praat}" "#{wav_file}"`
     lines = praat_output.split("\n")
     praat_data = lines.map{|line| k,v = line.split(": "); [k,v]}.to_h # this allows praat output to contain nil values
-    update_attributes(f0rise: praat_data["Rise percent"].to_i, praat_output: praat_output)
+    update_attributes({f0rise: praat_data["Rise percent"].to_i, praat_output: praat_output})
     praat_output
   end
 
