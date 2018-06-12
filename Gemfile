@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'activeadmin', '~> 1.3.0'
 gem 'activeadmin_addons', '~> 1.5'
 gem 'haml-rails'
+gem 'chartkick'
+gem 'highcharts-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

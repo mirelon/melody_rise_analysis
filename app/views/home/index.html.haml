@@ -8,7 +8,7 @@
         Nový pacient
       - @pacienti.each do |pacient|
         %option{value: pacient.id}
-          = pacient.display_name
+          = "#{pacient.id}: #{pacient.display_name}"
     %form#pacient
       = hidden_field_tag 'pacient_id', @pacient_id
       = text_field_tag 'meno', @meno, placeholder: 'Meno'
