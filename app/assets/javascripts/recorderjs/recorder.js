@@ -19,8 +19,6 @@ DEALINGS IN THE SOFTWARE.
 
 (function(window){
 
-  var WORKER_PATH = 'assets/recorderjs/recorderWorker.js';
-
   var Recorder = function(source, cfg){
     var config = cfg || {};
     var bufferLen = config.bufferLen || 4096;
@@ -31,7 +29,7 @@ DEALINGS IN THE SOFTWARE.
        this.node = this.context.createScriptProcessor(bufferLen, 2, 2);
     }
    
-    var worker = new Worker(config.workerPath || WORKER_PATH);
+    var worker = new Worker(config.workerPath || $('#recorderWorkerPath').attr('value'));
     worker.postMessage({
       command: 'init',
       config: {
