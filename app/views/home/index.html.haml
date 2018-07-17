@@ -29,4 +29,5 @@
       Váš prehliadač nepodporuje prehrávanie audio súborov.
     #analysis
       #analysisResult
-      %img#loader{src: 'assets/loader.svg', style: 'max-height: 100%; max-width: 100%; display:none;'}
+      %img#loader{src: image_path('loader.svg'), style: 'max-height: 100%; max-width: 100%; display:none;'}
+    = hidden_field_tag 'recorderWorkerPath', javascript_path('recorderjs/recorderWorker.js')
