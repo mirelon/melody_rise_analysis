@@ -71,12 +71,12 @@ function uploadAudio( blob ) {
       url: '/home/upload',
       data: fd,
       dataType: 'json'
-    }).done(function(json) {
+    }).done(function(nahravka) {
       $('#recordingFiles')
         .append($('<option></option>')
-        .attr("value",json['id'])
-        .text(json['id']));
-      $('#recordingFiles').val(json['id']).trigger('change');
+        .attr("value",nahravka.id)
+        .text(nahravka.id));
+      $('#recordingFiles').val(nahravka.id).trigger('change');
     });
   };
   reader.readAsDataURL(blob);
@@ -274,11 +274,11 @@ $(function() {
       }).done(function(json){
         console.log(json);
         window.json = json;
-        $('#play').attr('src', json['wav_url']);
-        $('#play').show();
+        $('#play').find('source').attr('src', json['data_uri']);
+        $('#play').show().load(json['data_uri']);
         $('#loader').hide();
         $('#analysisResult').show();
-        displayAnalysis(json['praat_output']);
+        // displayAnalysis(json['praat_output']);
       });
     }   
   });

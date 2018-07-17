@@ -1,18 +1,14 @@
 class HomeController < ApplicationController
+  skip_before_action :verify_authenticity_token, :only => [:upload]
+
   def index
     @pacienti = Pacient.all
     @nahravky = Nahravka.all
   end
 
   def upload
-    blob = ActiveStorage::Blob.create_after_upload!(
-        io: StringIO.new(Base64.decode64(params[:data].split(",").last)),
-        filename: DateTime.now.strftime('%Y%m%d-%H%M%S'),
-        content_type: 'audio/wav'
-    )
     pacient = Pacient.where(params.permit(:meno, :priezvisko, :vek, :pohlavie)).first_or_create
-    nahravka = pacient.nahravky.create(file: blob)
-    nahravka.analyze_file
+    nahravka = pacient.nahravky.create(data_uri: params[:data])
     render json: nahravka
   end
 end
