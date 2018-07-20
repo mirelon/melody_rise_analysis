@@ -6,8 +6,8 @@ ActiveAdmin.register Nahravka do
       row :created_at
       row :pacient
       row :f0rise
-      row :file do |nahravka|
-        audio_tag url_for(nahravka.file), controls: true
+      row :data_uri do |nahravka|
+        audio_tag url_for(nahravka.data_uri), controls: true
       end
     end
   end
@@ -17,9 +17,8 @@ ActiveAdmin.register Nahravka do
     column :created_at
     column :pacient
     column :f0rise
-    column :file do |nahravka|
-      pp nahravka.file
-      audio_tag url_for(nahravka.file), controls: true
+    column :data_uri do |nahravka|
+      audio_tag url_for(nahravka.data_uri), controls: true
     end
     actions
   end
