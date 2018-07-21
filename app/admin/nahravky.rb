@@ -7,7 +7,7 @@ ActiveAdmin.register Nahravka do
       row :pacient
       row :f0rise
       row :data_uri do |nahravka|
-        audio_tag url_for(nahravka.data_uri), controls: true
+        render 'partials/audio', data_uri: nahravka.data_uri
       end
     end
   end
