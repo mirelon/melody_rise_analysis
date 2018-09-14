@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_17_144846) do
+ActiveRecord::Schema.define(version: 2018_09_12_170938) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -68,6 +69,15 @@ ActiveRecord::Schema.define(version: 2018_07_17_144846) do
     t.integer "pohlavie"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.citext "word"
+    t.string "lemma"
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["word"], name: "index_words_on_word"
   end
 
   add_foreign_key "nahravky", "pacienti"
